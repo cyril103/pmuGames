@@ -11,23 +11,19 @@ object Main  {
     !(finish == myFive) && (finish.sorted == myFive.sorted)
   def checkBonus3(finish : List[Int], MyFive : List[Int]): Boolean = {
     val first3 = finish.take(3).toSet
-    var count = 0
-    var countOther = 0
-    for(e <- MyFive) {
-      if first3(e)  then count +=1
-      else if finish.contains(e) then countOther += 1
+    val (count , countOther) = MyFive.foldLeft(0 -> 0){(t , e) =>
+      val (count, countOther) = t
+      if first3(e) then (count + 1) -> countOther
+      else if finish.contains(e) then count -> (countOther + 1)
+      else count -> countOther
     }
     count  == 3 && countOther == 0
   
   }
   def checkBonus4(finish : List[Int], MyFive : List[Int]): Boolean = {
-    
-    var count = 0
-    for(e <- MyFive){
-      if finish.contains(e) then count +=1
-    }
-    count == 4
-  
+    MyFive.foldLeft(0){(count, e) =>
+      if finish.contains(e) then count + 1 else count
+    } == 4
   }
 
   def gamesWins(finish : List[Int], games : List[List[Int]]): (ListBuffer[String], ListBuffer[String], ListBuffer[String], ListBuffer[String]) = {
