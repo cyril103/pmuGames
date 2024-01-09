@@ -1,0 +1,14 @@
+.bloop
+.bsp
+.metals
+.tasty
+project/project/
+project/target/
+project/
+target/
+*.log
+*.iml
+*.ipr
+*.iws
+.idea
+null/
