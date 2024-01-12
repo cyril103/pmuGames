@@ -2,7 +2,7 @@ import org.scalatest.funsuite.AnyFunSuite
 import com.cyril103.Main._
 
 
-class CheckfunTest extends AnyFunSuite {
+class CheckFunTest extends AnyFunSuite {
   val finish = List(1, 2, 3, 4, 5)
 
   test("checkOrder") {
@@ -11,7 +11,7 @@ class CheckfunTest extends AnyFunSuite {
     assert(!checkOrder(finish, List()), "must be false!")
   }
 
-  test("checkunOrder") {
+  test("checkUnOrder") {
     assert(checkUnorder(finish,List(2,1,3,4,5)),"must be true")
     assert(!checkUnorder(finish,finish),"must be false")
     assert(!checkUnorder(finish,List(1,2,3,4,5)),"must be false")

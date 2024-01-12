@@ -31,6 +31,7 @@ object Main  {
     val unorder = mutable.ListBuffer[String]()
     val bonus4 = mutable.ListBuffer[String]()
     val bonus3 = mutable.ListBuffer[String]()
+    
     for{
       game <- games
     }{
@@ -47,13 +48,7 @@ object Main  {
     val nCombination = 5 - base.length
     val combinations = assoc.combinations(nCombination)
     var n = 0
-    val unitaires = for {
-      c <- combinations
-
-    } yield {
-      base ++ c
-    }
-
+    val unitaires = for (c <- combinations) yield  base ++ c
     val tirages = unitaires.toList
     val (simple , reduit) = tirages.groupBy(_.init).map{case (xs,ys) =>
       val ass = ys.map(_.last)
