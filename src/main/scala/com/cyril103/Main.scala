@@ -6,20 +6,20 @@ import scala.collection.mutable.ListBuffer
 
 object Main  {
   def checkOrder(finish: List[Int], MyFive :List[Int]): Boolean = finish == MyFive
-  def checkUnorder(finish : List[Int], myFive : List[Int]): Boolean =
-    
+  
+  def checkUnorder(finish : List[Int], myFive : List[Int]): Boolean =    
     !(finish == myFive) && (finish.sorted == myFive.sorted)
+    
   def checkBonus3(finish : List[Int], MyFive : List[Int]): Boolean = {
     val first3 = finish.take(3).toSet
-    val (count , countOther) = MyFive.foldLeft(0 -> 0){(t , e) =>
-      val (count, countOther) = t
+    val (count , countOther) = MyFive.foldLeft(0 -> 0){case (count -> countOther , e) =>      
       if first3(e) then (count + 1) -> countOther
       else if finish.contains(e) then count -> (countOther + 1)
       else count -> countOther
     }
-    count  == 3 && countOther == 0
-  
+    count  == 3 && countOther == 0  
   }
+  
   def checkBonus4(finish : List[Int], MyFive : List[Int]): Boolean = {
     MyFive.foldLeft(0){(count, e) =>
       if finish.contains(e) then count + 1 else count
