@@ -4,7 +4,6 @@
 .tasty
 project/project/
 project/target/
-project/
 target/
 *.log
 *.iml

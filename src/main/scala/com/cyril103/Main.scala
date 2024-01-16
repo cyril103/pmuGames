@@ -1,6 +1,27 @@
 package com.cyril103
+import scala.scalajs.js
+import scala.scalajs.js.annotation.*
+import org.scalajs.dom
+
 
 object Main  extends App {
+  var checkedBoxes = List.empty[Int]
+
+  val checkBoxes = dom.document.querySelectorAll("ul:first-of-type input[type=checkbox]")
+  for (i <- 0 until checkBoxes.length) {
+    checkBoxes(i).addEventListener("change", (e: dom.Event) => {
+      val target = e.target.asInstanceOf[dom.html.Input]
+      if (target.checked) {
+        checkedBoxes =  checkedBoxes :+ target.value.toInt
+      } else {
+        checkedBoxes = checkedBoxes.filter(_ != target.value.toInt)
+      }
+      //println(checkedBoxes)
+    })}
+  @JSExportTopLevel("storeCheckedBoxes")
+  def storeCheckedBoxes(): Unit = {
+    println(checkedBoxes)
+  }
   val mise = BigDecimal(2.00)
   val gainOrdre = BigDecimal(330.40)
   val gainDesordre = BigDecimal(9.00)
